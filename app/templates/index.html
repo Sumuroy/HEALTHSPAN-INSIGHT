@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HealthSpan Insight - Life Expectancy Predictor</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("/static/images/background.jpg") no-repeat center center
+          fixed;
+        background-size: cover;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 50px auto;
+        background-color: rgba(255, 255, 255, 0.4);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 25px;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: bold;
+        color: rgb(10, 10, 11);
+        font-size: 14px;
+      }
+
+      input[type="number"] {
+        width: 90%;
+        padding: 5px 3px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .full-width {
+        grid-column: span 2;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>HealthSpan Insight</h2>
+      <form method="POST">
+        {% for feature in features %}
+        <div>
+          <label>{{ feature.replace('_', ' ').capitalize() }}:</label>
+          <input type="number" step="any" name="{{ feature }}" required />
+        </div>
+        {% endfor %}
+        <div class="full-width">
+          <button type="submit">Predict Life Expectancy</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
